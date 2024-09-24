@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      color: rgb(46, 93, 93);
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      background-color: #7ec4b6;
+      text-align: center;
+    }
+
+    nav li {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    nav li a {
+      text-decoration: none;
+      padding: 10px;
+      color: #333;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+    }
+
+    .login-form,
+    .registration-form {
+      width: 45%;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 15px;
+    }
+
+    .login-form h2,
+    .registration-form h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    form input {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+
+    form button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #1e586b;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .validation-error {
+      color: red;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to the Hospital Management System</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Terms & Conditions</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="container">
+    <div class="login-form">
+      <h2>Login</h2>
+      <form id="loginForm" onsubmit="login(event)">
+        <select id="userType">
+          <option value="admin">Admin</option>
+          <option value="doctor">Doctor</option>
+          <option value="patient">Patient</option>
+        </select>
+        <input type="text" id="username" placeholder="Username/Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+    <div class="registration-form">
+      <h2>Register</h2>
+      <form id="registrationForm">
+        <input type="text" id="regName" placeholder="Name" required>
+        <input type="email" id="regEmail" placeholder="Email" required>
+        <span id="emailError" class="validation-error"></span>
+        <input type="password" id="regPassword" placeholder="Password" required>
+        <input type="password" id="regConfirmPassword" placeholder="Confirm Password" required>
+        <span id="confirmPasswordError" class="validation-error"></span>
+        <input type="tel" id="regPhone" placeholder="Phone number (10-digit)" pattern="[0-9]{10}" maxlength="10" required>
+        <span id="phoneError" class="validation-error"></span>
+        <textarea id="regAddress" placeholder="Address" required></textarea>
+        <!-- Additional registration fields can be added here -->
+        <button type="button" onclick="validateRegistration()">Register</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    function login(event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Retrieve user input
+      const userType = document.getElementById("userType").value;
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      // Perform login validation
+      // Add your own validation logic here
+
+      // Redirect based on user type
+      if (userType === "admin") {
+        window.location.href = "admin.html";
+      } else if (userType === "doctor") {
+        window.location.href = "doctor.html";
+      } else if (userType === "patient") {
+        window.location.href = "patient.html";
+      }
+    }
+
+    function validateRegistration() {
+      // Retrieve registration input
+      const regEmail = document.getElementById("regEmail").value;
+      const emailError = document.getElementById("emailError");
+      const regPassword = document.getElementById("regPassword").value;
+      const regConfirmPassword = document.getElementById("regConfirmPassword").value;
+      const confirmPasswordError = document.getElementById("confirmPasswordError");
+      const regPhone = document.getElementById("regPhone").value;
+      const phoneError = document.getElementById("phoneError");
+
+      // Perform validation
+      if (!validateEmail(regEmail)) {
+        emailError.textContent = "Invalid email address!";
+        return;
+      } else {
+        emailError.textContent = "";
+      }
+
+      if (regPassword !== regConfirmPassword) {
+        confirmPasswordError.textContent = "Password and Confirm Password do not match!";
+        return;
+      } else {
+        confirmPasswordError.textContent = "";
+      }
+
+      if (regPhone.length !== 10 || isNaN(regPhone)) {
+        phoneError.textContent = "Phone number should be 10 digits!";
+       return;
+      } else {
+        phoneError.textContent = "";
+      }
+
+      // Proceed with registration
+      register();
+    }
+
+    function validateEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    function register() {
+      // Retrieve registration input
+      const regName = document.getElementById("regName").value;
+      const regEmail = document.getElementById("regEmail").value;
+      const regPhone = document.getElementById("regPhone").value;
+      const regPassword = document.getElementById("regPassword").value;
+      const regConfirmPassword = document.getElementById("regConfirmPassword").value;
+      const regAddress = document.getElementById("regAddress").value;
+
+      // Perform registration logic
+      // Add your own registration logic here
+
+      // Show success message or redirect to a success page
+      alert("Registration successful!");
+    }
+  </script>
+</body>
+</html>

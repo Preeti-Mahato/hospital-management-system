@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Page</title>
+  <style>
+    /* CSS styles for the admin page */
+    .btnLogin-popup {
+      width: 10%;
+      padding-top: 0%;
+      float: right;
+      background-color: #fc64a1;
+      font-size: medium;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    h2.registered-admin,
+    h2.registered-patients,
+    h2.registered-doctors {
+      float: middle;
+      clear: right;
+      margin: 0;
+      color: #333;
+    }
+
+    .registered-info {
+      float: right;
+      width: 40%;
+      margin-left: 20px;
+    }
+
+    .registered-info > div {
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    nav {
+      background-color: #f4f4f4;
+      padding: 10px;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    section {
+      padding: 20px;
+    }
+
+    #registration {
+      float: left;
+      width: 30%;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+
+    #registration form label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    #registration form input[type="text"],
+    #registration form input[type="email"],
+    #registration form input[type="password"],
+    #registration form select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+
+    #registration form input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #f470b9;
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+
+    .error-message {
+      color: red;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Admin Page</h1>
+    <button class="btnLogin-popup"><a href="home.html">Log Out</a></button>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="doctor.html">Doctors</a></li>
+      <li><a href="patient.html">Patients</a></li>
+    </ul>
+  </nav>
+
+  <section>
+    <div id="registration">
+      <h2>New Registration</h2>
+      <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+        <div id="email-popup" class="error-message"></div><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" id="confirm-password" name="confirm-password" required><br>
+        <div id="password-error" class="error-message"></div><br>
+
+        <label for="page">Select a page:</label>
+        <select id="page" name="page">
+          <option value="">Choose a page</option>
+          <option value="doctor.html">Doctor Page</option>
+          <option value="patient.html">Patient Page</option>
+        </select>
+
+        <input type="submit" value="Register">
+      </form>
+    </div>
+
+    <div class="registered-info">
+      <div>
+        <h2 class="registered-admin">Registered Admin</h2>
+        <table id="admin-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Admin 1</td>
+              <td>admin1@example.com</td>
+            </tr>
+            <tr>
+              <td>Admin 2</td>
+              <td>admin2@example.com</td>
+            </tr>
+            <!-- Add more rows asneeded -->
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <h2 class="registered-patients">Registered Patients</h2>
+        <table id="patients-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Age</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Patient 1</td>
+              <td>patient1@example.com</td>
+              <td>25</td>
+            </tr>
+            <tr>
+              <td>Patient 2</td>
+              <td>patient2@example.com</td>
+              <td>30</td>
+            </tr>
+            <!-- Add more rows as needed -->
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <h2 class="registered-doctors">Registered Doctors</h2>
+        <table id="doctors-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Specialty</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Doctor 1</td>
+              <td>doctor1@example.com</td>
+              <td>Cardiology</td>
+            </tr>
+            <tr>
+              <td>Doctor 2</td>
+              <td>doctor2@example.com</td>
+              <td>Dermatology</td>
+            </tr>
+            <!-- Add more rows as needed -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault(); // Prevent the form from submitting normally
+
+      var password = document.getElementById('password').value;
+      var confirmPassword = document.getElementById('confirm-password').value;
+
+      if (password !== confirmPassword) {
+        showErrorMessage("password-error", "Password and Confirm Password do not match.");
+      } else {
+        clearErrorMessage("password-error");
+
+        var selectedPage = document.getElementById('page').value;
+
+        if (selectedPage !== '') {
+          window.location.href = selectedPage; // Redirect to the selected page
+        }
+      }
+    });
+
+    function showErrorMessage(elementId, message) {
+      var errorContainer = document.getElementById(elementId);
+      errorContainer.textContent = message;
+      errorContainer.style.display = "block";
+    }
+
+    function clearErrorMessage(elementId) {
+      var errorContainer = document.getElementById(elementId);
+      errorContainer.textContent = "";
+      errorContainer.style.display = "none";
+    }
+
+    document.getElementById('email').addEventListener('input', function() {
+      var emailInput = this.value;
+      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!emailPattern.test(emailInput)) {
+        showErrorMessage("email-popup", "Please enter a valid email address.");
+      } else {
+        clearErrorMessage("email-popup");
+      }
+    });
+  </script>
+</body>
+</html>
